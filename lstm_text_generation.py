@@ -63,7 +63,7 @@ else:
 
     optimizer = RMSprop(lr=0.005)
     model.compile(loss='categorical_crossentropy', optimizer=optimizer)
-    model.save('/home/nuqz/.keras/models/nitzsche.h5')
+    model.save(os.environ['HOME'] + '/.keras/models/nitzsche.h5')
 
 print('Vectorize dataset...')
 for i, example in enumerate(examples):
@@ -105,7 +105,7 @@ def sample(preds, temperature=1.0):
 batch_size = 4096
 refined_text = ' '.join(map(lambda s: s[6], examples))
 def on_epoch_end(epoch, logs):
-    model.save('/home/nuqz/.keras/models/nitzsche_'+str(batch_size)+str(epoch)+'.h5')
+    model.save(os.environ['HOME'] + '/.keras/models/nitzsche_'+str(batch_size)+str(epoch)+'.h5')
     # Function invoked at end of each epoch. Prints generated text.
     print()
     print('----- Generating text after Epoch: %d' % epoch)
